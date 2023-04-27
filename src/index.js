@@ -25,8 +25,7 @@ function* fetchAllMovies() {
 
     } catch {
         console.log('get all error');
-    }
-        
+    }    
 }
 
 // Create sagaMiddleware

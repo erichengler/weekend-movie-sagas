@@ -13,6 +13,10 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
+    useEffect(() => {
+        dispatch({ type: 'FETCH_GENRES' });
+    }, []);
+
     // Takes user to details of the movie that was clicked on
     const toDetails = (id) => {
         history.push(`/details/${id}`)

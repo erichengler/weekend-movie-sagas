@@ -2,3 +2,9 @@
     max-width: 400px;
     margin: auto;
 }
+
+.genreList {
+    width: 110px;
+    margin: auto;
+    text-align: left;
+}

@@ -40,17 +40,21 @@ function MovieList() {
                                 <Grid item sx={{ mx: '20px', my: '20px' }}>
                                     <Card key={movie.id} variant="outlined"
                                         sx={{ width: 320, maxWidth: 320, 
-                                            height: 432, maxHeight: 432,
+                                            height: 445, maxHeight: 445,
                                             backgroundColor: 'rgba(166,43,31,0.2)',
-                                            border: '1px solid black' }}
+                                            boxShadow: 4 }}
                                     >
-                                        <Typography variant="h6" sx={{ my: '10px' }}>
-                                            {movie.title}                         
-                                        </Typography>
-                                        <img src={movie.poster} alt={movie.title}
-                                            onClick={() => toDetails(movie.id)}
-                                            className="movieImages"
-                                        />
+                                        <CardContent>
+                                            <Typography variant="h6" >
+                                                {movie.title}                         
+                                            </Typography>
+                                        </CardContent>
+                                        <CardMedia sx={{ cursor: 'pointer', margin: 'auto',
+                                            width: '240px', height: '355px' }} 
+                                            image={movie.poster} title={movie.title}
+                                            onClick={ () => toDetails(movie.id) }
+                                        >
+                                        </CardMedia>
                                     </Card>
                                 </Grid>
                             );

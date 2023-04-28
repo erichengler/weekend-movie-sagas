@@ -23,7 +23,7 @@ function Header() {
     }
 
     return (
-        <AppBar position="static" className='App-header'
+        <AppBar position="sticky" className='App-header'
             sx={{ backgroundColor: '#A62B1F' }}
         >
             <Container maxWidth="xxl">

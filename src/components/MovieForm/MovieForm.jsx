@@ -44,13 +44,13 @@ function MovieForm() {
     return (
         <>
             <h3>Add a Movie</h3>
-            <form>
-                <input type="text" placeholder="Movie Title" 
+            <form  onSubmit={addMovie}>
+                <input type="text" placeholder="Movie Title"
                     required onChange={handleTitleChange}
                 />
                 <br /><br />
-                <input 
-                    type="text" placeholder="Poster Image URL" 
+                <input
+                    type="text" placeholder="Poster Image URL"
                     required onChange={handlePosterChange}
                 />
                 <br /><br />
@@ -59,7 +59,7 @@ function MovieForm() {
                     placeholder="Movie Description"
                     rows="10" cols="30" required>
                 </textarea>
-                <br /><br />
+                <h4>Genre:</h4>
                 <select onChange={handleGenreChange}>
                     <option value="1">Adventure</option>
                     <option value="2">Animated</option>
@@ -75,9 +75,10 @@ function MovieForm() {
                     <option value="12">Superhero</option>
                 </select>
                 <br /><br />
-                <button onClick={addMovie}>Submit</button>
+                <input type="submit" />
+                <button onClick={backToList}>Cancel</button>
             </form>
-            <button onClick={backToList}>Cancel</button>
+            
         </>
     );
 }

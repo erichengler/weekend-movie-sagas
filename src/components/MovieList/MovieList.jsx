@@ -20,15 +20,10 @@ function MovieList() {
     const toDetails = (id) => {
         history.push(`/details/${id}`);
     }
-    // Takes user to form to add a movie
-    const toForm = () => {
-        history.push(`/form`);
-    }
 
     return (
-        <main>
-            <h1>MovieList</h1>
-            <button onClick={toForm}>Add Movie</button>
+        <main className="main">
+            <h1>Movie List</h1>
             <section className="movies">
                 {movies.map(movie => {
                     return (

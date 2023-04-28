@@ -1,8 +1,14 @@
+.main {
+    color: #193C40;
+}
+
 .movies {
     display : flex;
     flex-wrap: wrap;
 }
 
 .movieImages {
-    cursor: pointer
+    cursor: pointer;
+    width: 240px;
+    height: 355px;
 }

@@ -33,7 +33,7 @@ function MovieDetails() {
     }, [])
 
     return (
-        <>
+        <div className="details">
             <h3>{movies[id - 1].title}</h3>
             <img src={movies[id - 1].poster} alt={movies[id - 1].title} />
             <br /><br />
@@ -51,7 +51,7 @@ function MovieDetails() {
             <br />
             <button onClick={backToList}>Back to List</button>
             <br />
-        </>
+        </div>
     )
 }
 

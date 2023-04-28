@@ -1,9 +1,13 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
-
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Readme coming soon!
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Tasklist
+
+1. [ ] Styling! Make it look nice with MUI
+2. [ ] Attempt stretch goals 2 and 3
+3. [ ] Refer to "Other Ideas" in INSTRUCTIONS
+
+

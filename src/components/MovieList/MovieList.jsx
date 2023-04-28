@@ -12,19 +12,23 @@ function MovieList() {
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
-
     useEffect(() => {
         dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
     // Takes user to details of the movie that was clicked on
     const toDetails = (id) => {
-        history.push(`/details/${id}`)
+        history.push(`/details/${id}`);
+    }
+    // Takes user to form to add a movie
+    const toForm = () => {
+        history.push(`/form`);
     }
 
     return (
         <main>
             <h1>MovieList</h1>
+            <button onClick={toForm}>Add Movie</button>
             <section className="movies">
                 {movies.map(movie => {
                     return (

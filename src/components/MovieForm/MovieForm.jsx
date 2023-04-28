@@ -43,7 +43,7 @@ function MovieForm() {
 
     return (
         <>
-            <h3>Add a Movie</h3>
+            <h2>Add Movie</h2>
             <form  onSubmit={addMovie}>
                 <input type="text" placeholder="Movie Title"
                     required onChange={handleTitleChange}

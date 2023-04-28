@@ -2,7 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import axios from 'axios';
-import './MovieDetails.css';
+// ------- MUI Imports -------
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 
 function MovieDetails() {
 
@@ -33,25 +40,63 @@ function MovieDetails() {
     }, [])
 
     return (
-        <div className="details">
-            <h3>{movies[id - 1].title}</h3>
-            <img src={movies[id - 1].poster} alt={movies[id - 1].title} />
+        <Container>
+            <Typography variant="h4">
+                Movie Details
+            </Typography>
+            <br />
+            <Grid container spacing={0} justifyContent='center'>
+                <Card variant="outlined" sx={{
+                    width: '900px', height: '610px', boxShadow: 4,
+                    backgroundColor: 'rgba(166,43,31,0.2)'
+                }}>
+                    <br />
+                    <Grid container>
+                        {/* Movie Poster Image */}
+                        <Grid item xs={5.5}>
+                            <CardMedia sx={{
+                                marginLeft: '30px', marginTop: '25px',
+                                width: '375px', height: '525px'
+                            }}
+                                image={movies[id - 1].poster}
+                                title={movies[id - 1].title}
+                            >
+                            </CardMedia>
+                        </Grid>
+                        {/* Title, genres and description */}
+                        <Grid item xs={6}>
+                            <CardContent sx={{ textAlign: 'left' }}
+                            >
+                                <Typography variant="h5">
+                                    <u>{movies[id - 1].title}</u>
+                                </Typography>
+                                <Typography>
+                                    {
+                                        genresForMovie.map(genre => {
+                                            return <span key={genre.id}>
+                                                <i>•{genre.name}&nbsp;&nbsp;</i>
+                                            </span>
+                                        })
+                                    }
+                                </Typography>
+                                <br />
+                                <Typography fontSize='medium' sx={{
+                                    marginRight: '-35px', textAlign: 'left',
+                                }}
+                                >
+                                    {movies[id - 1].description}
+                                </Typography>
+                            </CardContent>
+                        </Grid>
+                    </Grid>
+                </Card>
+            </Grid>
+            <br />
+            <Button sx={{ color: '#A62B1F' }} onClick={backToList}>
+                Back to List
+            </Button>
             <br /><br />
-            <p className="detailsDescription">{movies[id - 1].description}</p>
-            <h4>Genres:</h4>
-            <ul className="genreList">
-                {
-                    genresForMovie.map(genre => {
-                        return <li key={genre.id}>
-                            {genre.name}
-                        </li>
-                    })
-                }
-            </ul>
-            <br />
-            <button onClick={backToList}>Back to List</button>
-            <br />
-        </div>
+        </Container>
     )
 }
 

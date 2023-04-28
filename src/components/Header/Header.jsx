@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
-// MUI Imports
+import '../App/App.css'
+// ------- MUI Imports -------
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,7 +8,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
-import '../App/App.css'
+
 
 function Header() {
 
@@ -25,7 +26,7 @@ function Header() {
         <AppBar position="static" className='App-header'
             sx={{ backgroundColor: '#A62B1F' }}
         >
-            <Container maxWidth="xl">
+            <Container maxWidth="xxl">
                 <Toolbar disableGutters>
                     <Typography variant="h3" noWrap href="/" onClick={backToList}
                         sx={{ overflow: 'hidden', color: '#ddb9ac', cursor: 'pointer' }}
@@ -33,13 +34,13 @@ function Header() {
                         Movie Sagas
                     </Typography>
                     <Button onClick={backToList} 
-                        sx={{ paddingLeft: '50px', color: '#ddb9ac' }}
+                        sx={{ marginLeft: '40px', color: '#ddb9ac' }}
                     >
                         Movie List
                     </Button>
                     <TheatersIcon sx={{ color: '#ddb9ac' }} />
                     <Button onClick={toForm} 
-                        sx={{ paddingLeft: '50px', color: '#ddb9ac' }}
+                        sx={{ marginLeft: '40px', color: '#ddb9ac' }}
                     >
                         Add Movie
                     </Button>

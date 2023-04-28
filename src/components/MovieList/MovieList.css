@@ -1,12 +1,3 @@
-.main {
-    color: #193C40;
-}
-
-.movies {
-    display : flex;
-    flex-wrap: wrap;
-}
-
 .movieImages {
     cursor: pointer;
     width: 240px;

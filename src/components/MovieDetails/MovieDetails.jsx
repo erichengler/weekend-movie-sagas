@@ -47,16 +47,16 @@ function MovieDetails() {
             <br />
             <Grid container spacing={0} justifyContent='center'>
                 <Card variant="outlined" sx={{
-                    width: '900px', height: '610px', boxShadow: 4,
+                    width: '900px', height: '593px', boxShadow: 4,
                     backgroundColor: 'rgba(166,43,31,0.2)'
                 }}>
                     <br />
                     <Grid container>
                         {/* Movie Poster Image */}
-                        <Grid item xs={5.5}>
+                        <Grid item xs={5}>
                             <CardMedia sx={{
-                                marginLeft: '30px', marginTop: '25px',
-                                width: '375px', height: '525px'
+                                marginLeft: '30px', marginTop: '10px',
+                                height: '535px'
                             }}
                                 image={movies[id - 1].poster}
                                 title={movies[id - 1].title}
@@ -65,7 +65,9 @@ function MovieDetails() {
                         </Grid>
                         {/* Title, genres and description */}
                         <Grid item xs={6}>
-                            <CardContent sx={{ textAlign: 'left' }}
+                            <CardContent sx={{ 
+                                textAlign: 'left', marginTop: '-10px',
+                                marginRight: '-65px' }}
                             >
                                 <Typography variant="h5">
                                     <u>{movies[id - 1].title}</u>
@@ -74,16 +76,13 @@ function MovieDetails() {
                                     {
                                         genresForMovie.map(genre => {
                                             return <span key={genre.id}>
-                                                <i>•{genre.name}&nbsp;&nbsp;</i>
+                                                <i>•&nbsp;{genre.name}&nbsp;</i>
                                             </span>
                                         })
                                     }
                                 </Typography>
                                 <br />
-                                <Typography fontSize='medium' sx={{
-                                    marginRight: '-35px', textAlign: 'left',
-                                }}
-                                >
+                                <Typography fontSize='medium'>
                                     {movies[id - 1].description}
                                 </Typography>
                             </CardContent>

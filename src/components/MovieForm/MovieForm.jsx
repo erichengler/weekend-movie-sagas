@@ -1,8 +1,32 @@
 import { useHistory } from "react-router-dom";
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+// MUI Imports
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 function MovieForm() {
+    // ------- START of TextField CSS -------
+    const CssTextField = styled(TextField)({
+        '& label.Mui-focused': {
+            color: '#A62B1F',
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: 'grey',
+            },
+            '&:hover fieldset': {
+                borderColor: 'black',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#A62B1F',
+            },
+        },
+    });
+    // ------- END of TextField CSS -------
+
     let [newMovie, setMovie] = useState({
         title: '', poster: '', description: '', genre_id: '1'
     })
@@ -15,7 +39,6 @@ function MovieForm() {
         event.preventDefault();
         history.push('/')
     }
-
 
     // --------- START of handleChange ---------
     const handleTitleChange = (event) => {
@@ -32,7 +55,6 @@ function MovieForm() {
     }
     // --------- END of handleChange ---------
 
-
     // Adds movie to the database and returns user to movie list view
     const addMovie = (event) => {
         event.preventDefault();
@@ -44,41 +66,58 @@ function MovieForm() {
     return (
         <>
             <h2>Add Movie</h2>
-            <form  onSubmit={addMovie}>
-                <input type="text" placeholder="Movie Title"
+            <form onSubmit={addMovie}>
+                {/* Title Input */}
+                <CssTextField placeholder="Movie Title"
                     required onChange={handleTitleChange}
                 />
                 <br /><br />
-                <input
-                    type="text" placeholder="Poster Image URL"
+                {/* Image URL Input */}
+                <CssTextField
+                    placeholder="Poster Image URL"
                     required onChange={handlePosterChange}
                 />
                 <br /><br />
-                <textarea
-                    onChange={handleDescChange}
+                {/* Description Input */}
+                <CssTextField
                     placeholder="Movie Description"
-                    rows="10" cols="30" required>
-                </textarea>
+                    rows="5" multiline maxRows={5} required
+                    onChange={handleDescChange}                
+                />
+                {/* Genre Select */}
                 <h4>Genre:</h4>
-                <select onChange={handleGenreChange}>
-                    <option value="1">Adventure</option>
-                    <option value="2">Animated</option>
-                    <option value="3">Biographical</option>
-                    <option value="4">Comedy</option>
-                    <option value="5">Disaster</option>
-                    <option value="6">Drama</option>
-                    <option value="7">Epic</option>
-                    <option value="8">Fantasy</option>
-                    <option value="9">Romantic</option>
-                    <option value="10">Science Fiction</option>
-                    <option value="11">Space-Opera</option>
-                    <option value="12">Superhero</option>
-                </select>
+                <CssTextField select onChange={handleGenreChange}
+                    defaultValue="1"
+                >
+                    <MenuItem value="1">Adventure</MenuItem>
+                    <MenuItem value="2">Animated</MenuItem>
+                    <MenuItem value="3">Biographical</MenuItem>
+                    <MenuItem value="4">Comedy</MenuItem>
+                    <MenuItem value="5">Disaster</MenuItem>
+                    <MenuItem value="6">Drama</MenuItem>
+                    <MenuItem value="7">Epic</MenuItem>
+                    <MenuItem value="8">Fantasy</MenuItem>
+                    <MenuItem value="9">Musical</MenuItem>
+                    <MenuItem value="10">Romantic</MenuItem>
+                    <MenuItem value="11">Science Fiction</MenuItem>
+                    <MenuItem value="12">Space-Opera</MenuItem>
+                    <MenuItem value="13">Superhero</MenuItem>
+                </CssTextField>
                 <br /><br />
-                <input type="submit" />
-                <button onClick={backToList}>Cancel</button>
+                {/* Buttons */}
+                <Button type="submit" 
+                    sx={{ color: '#A62B1F', marginRight: '15px' }}
+                >
+                    Submit
+                </Button>
+                |
+                <Button onClick={backToList}
+                    sx={{ color: '#A62B1F', marginLeft: '15px' }}
+                >
+                    Cancel
+                </Button>
             </form>
-            
+
         </>
     );
 }

@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 
 // ------- START of TextField CSS -------
 const CssTextField = styled(TextField)({
@@ -81,7 +79,6 @@ function MovieForm() {
             <form onSubmit={addMovie} autoComplete="off">
                 {/* Title Input */}
                 <CssTextField
-                    className="input"
                     placeholder="Movie Title"
                     required onChange={handleTitleChange}
                 />
@@ -93,9 +90,9 @@ function MovieForm() {
                 />
                 <br /><br />
                 {/* Description Input */}
-                <CssTextField 
+                <CssTextField sx={{ width: "300px" }}
                     placeholder="Movie Description"
-                    rows="5" multiline required
+                    rows="7" multiline required
                     onChange={handleDescChange}
                 />
                 {/* Genre Select */}

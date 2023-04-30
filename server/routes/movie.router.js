@@ -67,4 +67,6 @@ router.post('/', (req, res) => {
   })
 })
 
+// TODO: PUT query to edit details
+
 module.exports = router;

@@ -2,6 +2,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import MovieList from '../MovieList/MovieList'
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MovieForm from '../MovieForm/MovieForm';
+import EditDetails from '../EditDetails/EditDetails';
 import Header from '../Header/Header';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -27,6 +28,10 @@ function App() {
         {/* Add Movie page */}
         <Route path="/form" exact>
           <MovieForm />
+        </Route>
+
+        <Route path="/edit/:id" exact>
+          <EditDetails />
         </Route>
 
       </Router>

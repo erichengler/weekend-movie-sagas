@@ -25,6 +25,11 @@ function MovieDetails() {
         history.push('/')
     }
 
+    // Brings user to edit details page
+    const toEditDetails = () => {
+        history.push(`/edit/${id}`)
+    }
+
     // GET genres of specific movie based on id
     const getGenresForMovie = () => {
         console.log('In getGenreForMovie', genresForMovie);
@@ -70,9 +75,11 @@ function MovieDetails() {
                                 textAlign: 'left', marginTop: '-10px',
                                 marginRight: '-65px' }}
                             >
+                                {/* Title */}
                                 <Typography variant="h5">
                                     <u>{movies[id - 1].title}</u>
                                 </Typography>
+                                {/* Genres */}
                                 <Typography>
                                     {
                                         genresForMovie.map(genre => {
@@ -83,6 +90,7 @@ function MovieDetails() {
                                     }
                                 </Typography>
                                 <br />
+                                {/* Description */}
                                 <Typography fontSize='medium'>
                                     {movies[id - 1].description}
                                 </Typography>
@@ -91,7 +99,16 @@ function MovieDetails() {
                     </Grid>
                 </Card>
             </Grid>
-            <Button sx={{ color: '#A62B1F' }} onClick={backToList}>
+            {/* Buttons */}
+            <Button onClick={toEditDetails}
+                sx={{ color: '#A62B1F', marginRight: '15px' }} 
+            >
+                Edit Details
+            </Button>
+            |
+            <Button onClick={backToList}
+                sx={{ color: '#A62B1F', marginLeft: '15px' }} 
+            >
                 Back to List
             </Button>
         </Container>

@@ -94,7 +94,6 @@ function MovieDetails() {
             <Button sx={{ color: '#A62B1F' }} onClick={backToList}>
                 Back to List
             </Button>
-            <br /><br />
         </Container>
     )
 }

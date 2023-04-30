@@ -122,7 +122,7 @@ function MovieForm() {
                 <Button type="submit"
                     sx={{ color: '#A62B1F', marginRight: '15px' }}
                 >
-                    Submit
+                    Save
                 </Button>
                 |
                 <Button onClick={backToList}

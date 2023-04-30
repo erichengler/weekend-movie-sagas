@@ -15,13 +15,14 @@ function MovieList() {
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
 
-    // GET movies and genres from database
+    // GET movies from database
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
-    useEffect(() => {
-        dispatch({ type: 'FETCH_GENRES' });
-    }, []);
+    
+    // useEffect(() => {
+    //     dispatch({ type: 'FETCH_GENRES' });
+    // }, []);
 
     // Takes user to details of the movie that was clicked on
     const toDetails = (id) => {
@@ -40,8 +41,10 @@ function MovieList() {
             <Grid container spacing={0} justifyContent='center'>
                 {movies.map(movie => {
                     return (
-                        <Grid item sx={{ mx: '20px', my: '20px' }}>
-                            <Card key={movie.id} variant="outlined"
+                        <Grid key={movie.id} 
+                            item sx={{ mx: '20px', my: '20px' }}
+                        >
+                            <Card variant="outlined"
                                 sx={{
                                     width: 320, maxWidth: 320,
                                     height: 445, maxHeight: 445,

@@ -3,29 +3,33 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 // MUI Imports
 import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+
+// ------- START of TextField CSS -------
+const CssTextField = styled(TextField)({
+    '& label.Mui-focused': {
+        color: '#A62B1F',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: 'grey',
+        },
+        '&:hover fieldset': {
+            borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#A62B1F',
+        },
+    },
+});
+// ------- END of TextField CSS -------
 
 function MovieForm() {
-    // ------- START of TextField CSS -------
-    const CssTextField = styled(TextField)({
-        '& label.Mui-focused': {
-            color: '#A62B1F',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'grey',
-            },
-            '&:hover fieldset': {
-                borderColor: 'black',
-            },
-            '&.Mui-focused fieldset': {
-                borderColor: '#A62B1F',
-            },
-        },
-    });
-    // ------- END of TextField CSS -------
 
     let [newMovie, setMovie] = useState({
         title: '', poster: '', description: '', genre_id: '1'
@@ -57,18 +61,28 @@ function MovieForm() {
 
     // Adds movie to the database and returns user to movie list view
     const addMovie = (event) => {
-        event.preventDefault();
-        dispatch({ type: 'ADD_MOVIE', payload: newMovie, setMovie: setMovie });
-        setMovie({ title: '', poster: '', description: '', genre_id: '' });
-        history.push('/');
+        if ( (newMovie.description).length < 1160 ) {
+            event.preventDefault();
+            dispatch({ type: 'ADD_MOVIE', payload: newMovie, setMovie: setMovie });
+            setMovie({ title: '', poster: '', description: '', genre_id: '' });
+            history.push('/');
+        } else {
+            event.preventDefault();
+            alert('Your movie description is a bit too long! (Max: 1160 characters)')
+        }
     }
 
     return (
         <>
-            <h2>Add Movie</h2>
-            <form onSubmit={addMovie}>
+            <Typography variant="h4">
+                Add Movie
+            </Typography>
+            <br />
+            <form onSubmit={addMovie} autoComplete="off">
                 {/* Title Input */}
-                <CssTextField placeholder="Movie Title"
+                <CssTextField
+                    className="input"
+                    placeholder="Movie Title"
                     required onChange={handleTitleChange}
                 />
                 <br /><br />
@@ -79,13 +93,13 @@ function MovieForm() {
                 />
                 <br /><br />
                 {/* Description Input */}
-                <CssTextField
+                <CssTextField 
                     placeholder="Movie Description"
-                    rows="5" multiline maxRows={5} required
-                    onChange={handleDescChange}                
+                    rows="5" multiline required
+                    onChange={handleDescChange}
                 />
                 {/* Genre Select */}
-                <h4>Genre:</h4>
+                <h4>Select Genre:</h4>
                 <CssTextField select onChange={handleGenreChange}
                     defaultValue="1"
                 >
@@ -105,7 +119,7 @@ function MovieForm() {
                 </CssTextField>
                 <br /><br />
                 {/* Buttons */}
-                <Button type="submit" 
+                <Button type="submit"
                     sx={{ color: '#A62B1F', marginRight: '15px' }}
                 >
                     Submit
@@ -117,7 +131,6 @@ function MovieForm() {
                     Cancel
                 </Button>
             </form>
-
         </>
     );
 }

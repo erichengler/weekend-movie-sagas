@@ -5,13 +5,14 @@ body {
 .App {
   text-align: center;
   font-family: 'Roboto';
+  
 }
 
 .App-header {
-  height: 110px;
+  height: 100px;
   padding-left: 5px;
-  padding-top: 25px;
-  margin-bottom: 30px;
+  padding-top: 18px;
+  margin-bottom: 20px;
 }
 
 .App-intro {
@@ -21,4 +22,24 @@ body {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #c39c8e;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #aa7f70;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8e6759;
 }

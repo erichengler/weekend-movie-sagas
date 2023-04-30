@@ -48,7 +48,8 @@ function MovieDetails() {
             <Grid container spacing={0} justifyContent='center'>
                 <Card variant="outlined" sx={{
                     width: '900px', height: '593px', boxShadow: 4,
-                    backgroundColor: 'rgba(166,43,31,0.2)'
+                    backgroundColor: 'rgba(166,43,31,0.2)',
+                    marginBottom: '10px'
                 }}>
                     <br />
                     <Grid container>
@@ -90,7 +91,6 @@ function MovieDetails() {
                     </Grid>
                 </Card>
             </Grid>
-            <br />
             <Button sx={{ color: '#A62B1F' }} onClick={backToList}>
                 Back to List
             </Button>

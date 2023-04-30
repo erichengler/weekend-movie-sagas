@@ -26,20 +26,18 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 14px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #c39c8e;
+  background: rgba(166,43,31,0.2);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #aa7f70;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #8e6759;
+  background: #A62B1F;
+  border: 3px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
 }

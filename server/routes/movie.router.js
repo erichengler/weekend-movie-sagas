@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// GET movies
 router.get('/', (req, res) => {
   // Query to get all movies
   const query = `SELECT * FROM movies ORDER BY "id" ASC`;
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
     })
 });
 
+// GET genres for specific movie
 router.get('/:id', (req, res) => {
   // Query to get genres of a specific movie based on id
   let movieId = req.params.id
@@ -30,6 +32,7 @@ router.get('/:id', (req, res) => {
   })
 });
 
+// POST
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
@@ -67,6 +70,22 @@ router.post('/', (req, res) => {
   })
 })
 
-// TODO: PUT query to edit details
+// PUT
+router.put('/', (req, res) => {
+  console.log('In PUT request');
+  let updatedMovie = req.body;
+
+  let queryText = `UPDATE "movies" 
+                  SET "title" = $1, "description" = $2
+                  WHERE "id" = $3;`;
+
+  pool.query( queryText, 
+    [updatedMovie.title, updatedMovie.description, updatedMovie.id] )
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in PUT', error);
+      res.sendStatus(500);
+    })
+})
 
 module.exports = router;

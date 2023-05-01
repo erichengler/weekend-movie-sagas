@@ -17,6 +17,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
     yield takeEvery('ADD_MOVIE', postMovie);
+    yield takeEvery('EDIT_MOVIE', editMovie)
 }
 
 function* fetchAllMovies() {
@@ -52,6 +53,16 @@ function* postMovie(action) {
     }
 }
 
+function* editMovie(action) {
+    try {
+        yield axios.put(`/api/movie`, action.payload);
+        yield put({ type: 'FETCH_MOVIES' });
+    } catch (error) {
+        console.log(`Error in editMovie ${error}`);
+        alert('Something went wrong!');
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -65,7 +76,7 @@ const movies = (state = [], action) => {
     }
 }
 
-// Used to store the movie genres
+// Used to store all genres
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':

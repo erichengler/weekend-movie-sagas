@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 // MUI Imports
 import { styled } from '@mui/material/styles';
@@ -30,25 +30,24 @@ function EditDetails() {
 
     let { id } = useParams();
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const movies = useSelector(store => store.movies);
 
     let [newMovie, setMovie] = useState({
-        title: movies[id - 1].title, description: movies[id - 1].description
+        id: movies[id - 1].id, 
+        title: movies[id - 1].title, 
+        description: movies[id - 1].description
     })
 
     // Saves changes and brings user back to details
-    const saveDetails = (event) => {
-        if ((newMovie.description).length < 1160) {
-            event.preventDefault();
-            // TODO : Axios PUT Request with dispatch 
-
-            setMovie({ title: '', description: '' });
+    const saveDetails = (movie) => {
+        if ((newMovie.description).length < 1160) { 
+            dispatch({ type: 'EDIT_MOVIE', payload: newMovie })
+            setMovie({ id: movies[id - 1].id, title: '', description: '' });
             history.push(`/details/${id}`)
         } else {
-            event.preventDefault();
             alert('Your movie description is a bit too long! (Max: 1160 characters)')
-
         }
     }
     // Cancels changes and brings user back to details
@@ -70,15 +69,15 @@ function EditDetails() {
             <Typography variant='h4'>
                 Edit Details
             </Typography>
-            <br />
-            <form onSubmit={saveDetails}>
+            <br /><br />
+            <form>
                 {/* Edit Title */}
                 <CssTextField
                     label="Title"
                     defaultValue={movies[id - 1].title}
                     required onChange={handleTitleChange}
                 />
-                <br /><br />
+                <br /><br /><br />
                 {/* Edit Description */}
                 <CssTextField sx={{ width: '300px' }}
                     label="Description"
@@ -87,13 +86,16 @@ function EditDetails() {
                     onChange={handleDescChange}
                 />
                 <br /><br />
-                <Button type="submit"
+                {/* Buttons */}
+                <Button
+                    onClick={ () => saveDetails(movies[id - 1].id) }
                     sx={{ color: '#A62B1F', marginRight: '15px' }}
                 >
                     Save
                 </Button>
                 |
-                <Button onClick={backToDetails}
+                <Button 
+                    onClick={backToDetails}
                     sx={{ color: '#A62B1F', marginLeft: '15px' }}
                 >
                     Cancel

@@ -75,7 +75,7 @@ function MovieForm() {
             <Typography variant="h4">
                 Add Movie
             </Typography>
-            <br />
+            <br /><br />
             <form onSubmit={addMovie} autoComplete="off">
                 {/* Title Input */}
                 <CssTextField

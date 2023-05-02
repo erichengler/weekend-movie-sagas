@@ -1,4 +1,6 @@
 import { HashRouter as Router, Route } from 'react-router-dom';
+import './App.css';
+// ------- MUI Imports -------
 import MovieList from '../MovieList/MovieList'
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MovieForm from '../MovieForm/MovieForm';
@@ -8,7 +10,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import './App.css';
+
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // ------- MUI Imports -------
@@ -19,10 +19,6 @@ function MovieList() {
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
-    
-    // useEffect(() => {
-    //     dispatch({ type: 'FETCH_GENRES' });
-    // }, []);
 
     // Takes user to details of the movie that was clicked on
     const toDetails = (id) => {

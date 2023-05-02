@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-// MUI Imports
+// ------- MUI Imports -------
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -33,16 +33,23 @@ function EditDetails() {
     const dispatch = useDispatch();
 
     const movies = useSelector(store => store.movies);
+    const genres = useSelector(store => store.genres);
+    const genresForMovie = useSelector(store => store.genresForMovie);
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_GENRES' });
+    }, []);
+
 
     let [newMovie, setMovie] = useState({
-        id: movies[id - 1].id, 
-        title: movies[id - 1].title, 
+        id: movies[id - 1].id,
+        title: movies[id - 1].title,
         description: movies[id - 1].description
     })
 
     // Saves changes and brings user back to details
     const saveDetails = (movie) => {
-        if ((newMovie.description).length < 1160) { 
+        if ((newMovie.description).length < 1160) {
             dispatch({ type: 'EDIT_MOVIE', payload: newMovie })
             setMovie({ id: movies[id - 1].id, title: '', description: '' });
             history.push(`/details/${id}`)
@@ -86,15 +93,17 @@ function EditDetails() {
                     onChange={handleDescChange}
                 />
                 <br /><br />
+                {/* Select Genres */}
+                // TODO: Select genres
                 {/* Buttons */}
                 <Button
-                    onClick={ () => saveDetails(movies[id - 1].id) }
+                    onClick={() => saveDetails(movies[id - 1].id)}
                     sx={{ color: '#A62B1F', marginRight: '15px' }}
                 >
                     Save
                 </Button>
                 |
-                <Button 
+                <Button
                     onClick={backToDetails}
                     sx={{ color: '#A62B1F', marginLeft: '15px' }}
                 >

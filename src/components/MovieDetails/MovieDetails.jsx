@@ -54,7 +54,8 @@ function MovieDetails() {
                 <Card variant="outlined" sx={{
                     width: '900px', height: '593px', boxShadow: 4,
                     backgroundColor: 'rgba(166,43,31,0.2)',
-                    marginBottom: '10px'
+                    marginBottom: '10px', overflowY:'auto',
+                    minWidth: '560px'
                 }}>
                     <br />
                     <Grid container>
@@ -62,7 +63,7 @@ function MovieDetails() {
                         <Grid item xs={5}>
                             <CardMedia sx={{
                                 marginLeft: '30px', marginTop: '10px',
-                                height: '535px'
+                                height: '535px', maxWidth:'100%',
                             }}
                                 image={movies[id - 1].poster}
                                 title={movies[id - 1].title}
@@ -73,7 +74,7 @@ function MovieDetails() {
                         <Grid item xs={6}>
                             <CardContent sx={{ 
                                 textAlign: 'left', marginTop: '-10px',
-                                marginRight: '-65px' }}
+                                marginRight: '-65px',  }}
                             >
                                 {/* Title */}
                                 <Typography variant="h5">

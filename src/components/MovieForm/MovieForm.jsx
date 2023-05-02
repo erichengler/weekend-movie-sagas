@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// MUI Imports
+// ------- MUI Imports -------
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -59,15 +59,10 @@ function MovieForm() {
 
     // Adds movie to the database and returns user to movie list view
     const addMovie = (event) => {
-        if ( (newMovie.description).length < 1160 ) {
             event.preventDefault();
             dispatch({ type: 'ADD_MOVIE', payload: newMovie, setMovie: setMovie });
             setMovie({ title: '', poster: '', description: '', genre_id: '' });
             history.push('/');
-        } else {
-            event.preventDefault();
-            alert('Your movie description is a bit too long! (Max: 1160 characters)')
-        }
     }
 
     return (

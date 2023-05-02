@@ -94,7 +94,9 @@ function EditDetails() {
                 />
                 <br /><br />
                 {/* Select Genres */}
-                // TODO: Select genres
+
+                {/* TODO: Select genres */}
+                
                 {/* Buttons */}
                 <Button
                     onClick={() => saveDetails(movies[id - 1].id)}

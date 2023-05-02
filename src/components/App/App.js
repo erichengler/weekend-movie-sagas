@@ -11,7 +11,6 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-
 function App() {
   return (
     <div className="App">
@@ -32,6 +31,7 @@ function App() {
           <MovieForm />
         </Route>
 
+        {/* Edit Details page */}
         <Route path="/edit/:id" exact>
           <EditDetails />
         </Route>

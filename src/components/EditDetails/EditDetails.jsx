@@ -40,23 +40,19 @@ function EditDetails() {
         dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
-
-    let [newMovie, setMovie] = useState({
+    let [movieToEdit, setMovie] = useState({
         id: movies[id - 1].id,
         title: movies[id - 1].title,
         description: movies[id - 1].description
     })
 
     // Saves changes and brings user back to details
-    const saveDetails = (movie) => {
-        if ((newMovie.description).length < 1160) {
-            dispatch({ type: 'EDIT_MOVIE', payload: newMovie })
-            setMovie({ id: movies[id - 1].id, title: '', description: '' });
-            history.push(`/details/${id}`)
-        } else {
-            alert('Your movie description is a bit too long! (Max: 1160 characters)')
-        }
+    const saveDetails = () => {
+        dispatch({ type: 'EDIT_MOVIE', payload: movieToEdit })
+        setMovie({ id: movies[id - 1].id, title: '', description: '' });
+        history.push(`/details/${id}`)
     }
+
     // Cancels changes and brings user back to details
     const backToDetails = () => {
         history.push(`/details/${id}`)
@@ -64,10 +60,10 @@ function EditDetails() {
 
     // --------- START of handleChange ---------
     const handleTitleChange = (event) => {
-        setMovie({ ...newMovie, title: event.target.value });
+        setMovie({ ...movieToEdit, title: event.target.value });
     }
     const handleDescChange = (event) => {
-        setMovie({ ...newMovie, description: event.target.value });
+        setMovie({ ...movieToEdit, description: event.target.value });
     }
     // --------- END of handleChange ---------
 
@@ -77,41 +73,39 @@ function EditDetails() {
                 Edit Details
             </Typography>
             <br /><br />
-            <form>
-                {/* Edit Title */}
-                <CssTextField
-                    label="Title"
-                    defaultValue={movies[id - 1].title}
-                    required onChange={handleTitleChange}
-                />
-                <br /><br /><br />
-                {/* Edit Description */}
-                <CssTextField sx={{ width: '300px' }}
-                    label="Description"
-                    defaultValue={movies[id - 1].description}
-                    rows="7" multiline required
-                    onChange={handleDescChange}
-                />
-                <br /><br />
-                {/* Select Genres */}
+            {/* Edit Title */}
+            <CssTextField
+                label="Title"
+                defaultValue={movies[id - 1].title}
+                required onChange={handleTitleChange}
+            />
+            <br /><br /><br />
+            {/* Edit Description */}
+            <CssTextField sx={{ width: '300px' }}
+                label="Description"
+                defaultValue={movies[id - 1].description}
+                rows="7" multiline required
+                onChange={handleDescChange}
+            />
+            <br /><br />
+            {/* Select Genres */}
 
-                {/* TODO: Select genres */}
-                
-                {/* Buttons */}
-                <Button
-                    onClick={() => saveDetails(movies[id - 1].id)}
-                    sx={{ color: '#A62B1F', marginRight: '15px' }}
-                >
-                    Save
-                </Button>
-                |
-                <Button
-                    onClick={backToDetails}
-                    sx={{ color: '#A62B1F', marginLeft: '15px' }}
-                >
-                    Cancel
-                </Button>
-            </form>
+            {/* TODO: Select genres */}
+
+            {/* Buttons */}
+            <Button
+                onClick={() => saveDetails(movies[id - 1].id)}
+                sx={{ color: '#A62B1F', marginRight: '15px' }}
+            >
+                Save
+            </Button>
+            |
+            <Button
+                onClick={backToDetails}
+                sx={{ color: '#A62B1F', marginLeft: '15px' }}
+            >
+                Cancel
+            </Button>
         </>
     );
 }

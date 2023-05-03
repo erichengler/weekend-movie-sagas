@@ -18,6 +18,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
     yield takeEvery('ADD_MOVIE', postMovie);
     yield takeEvery('EDIT_MOVIE', editMovie)
+    yield takeEvery('FETCH_THIS_MOVIE', fetchThisMovie);
 }
 
 function* fetchAllMovies() {
@@ -39,6 +40,20 @@ function* fetchAllGenres() {
         yield put({ type: 'SET_GENRES', payload: genres.data });
     } catch {
         console.log('get all genres error');
+    }
+}
+
+function* fetchThisMovie(action) {
+    // get this movie from the DB
+    try {
+        console.log(`Get this movie with ID: ${action.payload}`);
+        const movie = yield axios.get(`/api/movie/details?id=${action.payload}`);
+        const movieGenres = movie.data.map(genre => {
+            return { name: genre.name, value: genre.genre_id }
+        })
+        yield put({ type: 'SET_MOVIE', payload: { movie: movie.data[0], genres: movieGenres } })
+    } catch {
+        console.log('Get this movie error')
     }
 }
 
@@ -86,13 +101,11 @@ const genres = (state = [], action) => {
     }
 }
 
-// Used to store genres of a specific movie
-const genresForMovie = (state = [], action) => {
+// Used to store a specific movie
+const thisMovie = (state = [], action) => {
     switch (action.type) {
-        case 'SET_GENRES_FOR_MOVIE':
+        case 'SET_MOVIE':
             return action.payload;
-        case 'CLEAR_GENRES_FOR_MOVIE':
-            return [];
         default:
             return state;
     }
@@ -103,7 +116,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        genresForMovie,
+        thisMovie,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

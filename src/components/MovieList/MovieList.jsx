@@ -1,30 +1,24 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import MovieItem from '../MovieItem/MovieItem';
 // ------- MUI Imports -------
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 function MovieList() {
 
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const movies = useSelector(store => store.movies);
-    const genres = useSelector(store => store.genres)
-
-    // GET movies from database
+    // GET all movies and genres from database
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
-    // Takes user to details of the movie that was clicked on
-    const toDetails = (id) => {
-        history.push(`/details/${id}`);
-    }
+    // Storing all movies and genres
+    const movies = useSelector(store => store.movies);
+    const genres = useSelector(store => store.genres);
+
+    const dispatch = useDispatch();
 
     return (
         <Container maxWidth='xl'>
@@ -36,6 +30,8 @@ function MovieList() {
             </Typography>
             <br />
             <Typography>
+
+                {/* Maps through all genres */}
                 {genres.map(genre => {
                     if (genre.id === genres.length) {
                         return `${genre.name}`;
@@ -46,36 +42,11 @@ function MovieList() {
             </Typography>
             <br />
             <Grid container spacing={0} justifyContent='center'>
-                {movies.map(movie => {
-                    return (
-                        <Grid key={movie.id} 
-                            item sx={{ mx: '20px', my: '20px' }}
-                        >
-                            <Card variant="outlined"
-                                sx={{
-                                    width: 320, maxWidth: 320,
-                                    height: 445, maxHeight: 445,
-                                    backgroundColor: 'rgba(166,43,31,0.2)',
-                                    boxShadow: 4
-                                }}
-                            >
-                                <CardContent>
-                                    <Typography variant="h6" >
-                                        {movie.title}
-                                    </Typography>
-                                </CardContent>
-                                <CardMedia sx={{
-                                    cursor: 'pointer', margin: 'auto',
-                                    width: '240px', height: '355px'
-                                }}
-                                    image={movie.poster} title={movie.title}
-                                    onClick={() => toDetails(movie.id)}
-                                >
-                                </CardMedia>
-                            </Card>
-                        </Grid>
-                    );
-                })}
+
+                {/* Maps through all movies */}
+                {movies.map((movie) => (
+                    <MovieItem key={movie.id} movie={movie} />            
+                ))}
             </Grid>
             <br />
         </Container>

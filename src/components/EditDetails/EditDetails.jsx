@@ -28,28 +28,29 @@ const CssTextField = styled(TextField)({
 
 function EditDetails() {
 
+    useEffect(() => {
+        dispatch({ type: 'FETCH_GENRES' });
+        dispatch({ type: 'FETCH_THIS_MOVIE', payload: id });
+    }, []);
+
+    // Takes the id from the url
     let { id } = useParams();
+
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const movies = useSelector(store => store.movies);
-    const genres = useSelector(store => store.genres);
-    const genresForMovie = useSelector(store => store.genresForMovie);
+    // Storing current movie and all genres
+    const movie = useSelector(store => store.thisMovie);
+    const genres = useSelector((store) => store.genres);
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_GENRES' });
-    }, []);
-
-    let [movieToEdit, setMovie] = useState({
-        id: movies[id - 1].id,
-        title: movies[id - 1].title,
-        description: movies[id - 1].description
-    })
+    // Saved states for title, description and genres of specific movie
+    const [title, setTitle] = useState(movie.movie.title);
+    const [description, setDescription] = useState(movie.movie.description);
+    const [movieGenres, setMovieGenres] = useState(movie.genres);
 
     // Saves changes and brings user back to details
     const saveDetails = () => {
-        dispatch({ type: 'EDIT_MOVIE', payload: movieToEdit })
-        setMovie({ id: movies[id - 1].id, title: '', description: '' });
+        dispatch({ type: 'EDIT_MOVIE', payload: { id, title, description, movieGenres } })
         history.push(`/details/${id}`)
     }
 
@@ -60,56 +61,62 @@ function EditDetails() {
 
     // --------- START of handleChange ---------
     const handleTitleChange = (event) => {
-        setMovie({ ...movieToEdit, title: event.target.value });
+        setTitle(event.target.value);
     }
     const handleDescChange = (event) => {
-        setMovie({ ...movieToEdit, description: event.target.value });
+        setDescription(event.target.value);
     }
     // --------- END of handleChange ---------
 
     return (
-        <form autoComplete='off'>
-            <Typography variant='h4'>
-                Edit Details
-            </Typography>
-            <br /><br />
+        <div>
+            {movie.length === 0 || genres.length === 0 ? (
+                <h3>Loading...</h3>
+            ) : (
+            <form autoComplete='off'>
+                <Typography variant='h4'>
+                    Edit Details
+                </Typography>
+                <br /><br />
 
-            {/* Edit Title */}
-            <CssTextField
-                label="Title"
-                defaultValue={movies[id - 1].title}
-                required onChange={handleTitleChange}
-            />
-            <br /><br /><br />
+                {/* Edit Title */}
+                <CssTextField
+                    label="Title"
+                    defaultValue={title}
+                    required onChange={handleTitleChange}
+                />
+                <br /><br /><br />
 
-            {/* Edit Description */}
-            <CssTextField sx={{ width: '300px' }}
-                label="Description"
-                defaultValue={movies[id - 1].description}
-                rows="7" multiline required
-                onChange={handleDescChange}
-            />
-            <br /><br />
+                {/* Edit Description */}
+                <CssTextField sx={{ width: '300px' }}
+                    label="Description"
+                    defaultValue={description}
+                    rows="7" multiline required
+                    onChange={handleDescChange}
+                />
+                <br /><br />
 
-            {/* Select Genres */}
+                {/* Select Genres */}
 
 
 
-            {/* Buttons */}
-            <Button
-                onClick={() => saveDetails(movies[id - 1].id)}
-                sx={{ color: '#A62B1F', marginRight: '15px' }}
-            >
-                Save
-            </Button>
-            |
-            <Button
-                onClick={backToDetails}
-                sx={{ color: '#A62B1F', marginLeft: '15px' }}
-            >
-                Cancel
-            </Button>
-        </form>
+                {/* Buttons */}
+                <Button
+                    onClick={saveDetails}
+                    sx={{ color: '#A62B1F', marginRight: '15px' }}
+                >
+                    Save
+                </Button>
+                |
+                <Button
+                    onClick={backToDetails}
+                    sx={{ color: '#A62B1F', marginLeft: '15px' }}
+                >
+                    Cancel
+                </Button>
+            </form>
+            )}
+        </div>
     );
 }
 

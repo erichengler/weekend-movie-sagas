@@ -28,9 +28,10 @@ const CssTextField = styled(TextField)({
 
 function EditDetails() {
 
+    // Get this movie and all genres on load
     useEffect(() => {
-        dispatch({ type: 'FETCH_GENRES' });
         dispatch({ type: 'FETCH_THIS_MOVIE', payload: id });
+        dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
     // Takes the id from the url
@@ -70,6 +71,7 @@ function EditDetails() {
 
     return (
         <div>
+            {/* Checking if reducers have a value before loading */}
             {movie.length === 0 || genres.length === 0 ? (
                 <h3>Loading...</h3>
             ) : (

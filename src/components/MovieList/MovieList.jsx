@@ -22,13 +22,19 @@ function MovieList() {
 
     return (
         <Container maxWidth='xl'>
+
+            {/* Header */}
             <Typography variant="h4">
                 Movie List
             </Typography>
+
+            {/* Instructions */}
             <Typography>
                 <i>Click on a poster to view movie details</i>
             </Typography>
             <br />
+
+            {/* Display all genres */}
             <Typography>
 
                 {/* Maps through all genres */}
@@ -41,6 +47,8 @@ function MovieList() {
                 })}
             </Typography>
             <br />
+
+            {/* Grid containing movie cards */}
             <Grid container spacing={0} justifyContent='center'>
 
                 {/* Maps through all movies */}

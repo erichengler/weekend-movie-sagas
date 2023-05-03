@@ -27,7 +27,6 @@ const CssTextField = styled(TextField)({
 // ------- END of TextField CSS -------
 
 function EditDetails() {
-
     // Get this movie and all genres on load
     useEffect(() => {
         dispatch({ type: 'FETCH_THIS_MOVIE', payload: id });
@@ -75,7 +74,10 @@ function EditDetails() {
             {movie.length === 0 || genres.length === 0 ? (
                 <h3>Loading...</h3>
             ) : (
+                
             <form autoComplete='off'>
+                
+                {/* Header */}
                 <Typography variant='h4'>
                     Edit Details
                 </Typography>

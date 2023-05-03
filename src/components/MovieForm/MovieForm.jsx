@@ -67,10 +67,13 @@ function MovieForm() {
 
     return (
         <>
+            {/* Header */}
             <Typography variant="h4">
                 Add Movie
             </Typography>
             <br /><br />
+
+            {/* Form to input new movie information */}
             <form onSubmit={addMovie} autoComplete="off">
 
                 {/* Title Input */}

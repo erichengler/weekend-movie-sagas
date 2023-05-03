@@ -26,11 +26,15 @@ function MovieItem({ movie }) {
                     boxShadow: 4
                 }}
             >
+
+                {/* Movie title */}
                 <CardContent>
                     <Typography variant="h6" >
                         {movie.title}
                     </Typography>
                 </CardContent>
+
+                {/* Movie poster image */}
                 <CardMedia sx={{
                     cursor: 'pointer', margin: 'auto',
                     width: '240px', height: '355px'

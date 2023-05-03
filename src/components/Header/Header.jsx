@@ -13,10 +13,12 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 function Header() {
 
     const history = useHistory();
+    
     // Brings user back to movie list view
     const backToList = () => {
         history.push('/')
     }
+
     // Takes user to form to add a movie
     const toForm = () => {
         history.push(`/form`);
@@ -27,18 +29,24 @@ function Header() {
             sx={{ backgroundColor: '#A62B1F' }}
         >
             <Container maxWidth="xxl">
+
+                {/* Header */}
                 <Toolbar disableGutters>
                     <Typography variant="h3" noWrap href="/" onClick={backToList}
                         sx={{ overflow: 'hidden', color: '#ddb9ac', cursor: 'pointer' }}
                     >
                         Movie Sagas
                     </Typography>
+
+                    {/* Movie List Button */}
                     <Button onClick={backToList} 
                         sx={{ marginLeft: '40px', color: '#ddb9ac' }}
                     >
                         Movie List
                     </Button>
                     <TheatersIcon sx={{ color: '#ddb9ac' }} />
+
+                    {/* Add Movie Button */}
                     <Button onClick={toForm} 
                         sx={{ marginLeft: '40px', color: '#ddb9ac' }}
                     >

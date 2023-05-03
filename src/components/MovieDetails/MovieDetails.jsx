@@ -43,11 +43,15 @@ function MovieDetails() {
                 <h3>Loading...</h3>
             ) : (
                 <Container>
+
+                    {/* Header */}
                     <Typography variant="h4">
                         Movie Details
                     </Typography>
                     <br />
-                    <Grid container spacing={0} justifyContent='center'>
+
+                    {/* This grid seems redundant */}
+                    <Grid container justifyContent='center'>
                         <Card variant="outlined" sx={{
                             width: '900px', height: '593px', boxShadow: 4,
                             backgroundColor: 'rgba(166,43,31,0.2)',
@@ -55,6 +59,8 @@ function MovieDetails() {
                             minWidth: '560px'
                         }}>
                             <br />
+
+                            {/* Grid containing movie image and information */}
                             <Grid container>
 
                                 {/* Movie Poster Image */}
@@ -69,7 +75,7 @@ function MovieDetails() {
                                     </CardMedia>
                                 </Grid>
 
-                                {/* Title, genres and description */}
+                                {/* Movie Information */}
                                 <Grid item xs={6}>
                                     <CardContent sx={{
                                         textAlign: 'left', marginTop: '-10px',
@@ -97,7 +103,7 @@ function MovieDetails() {
                                         {/* Description */}
                                         <Typography fontSize='medium'>
                                             {movie.movie.description}
-                                        </Typography>
+                                        </Typography>                                      
                                     </CardContent>
                                 </Grid>
                             </Grid>

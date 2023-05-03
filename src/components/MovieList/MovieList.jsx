@@ -14,6 +14,7 @@ function MovieList() {
     const history = useHistory();
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
+    const genres = useSelector(store => store.genres)
 
     // GET movies from database
     useEffect(() => {
@@ -32,6 +33,16 @@ function MovieList() {
             </Typography>
             <Typography>
                 <i>Click on a poster to view movie details</i>
+            </Typography>
+            <br />
+            <Typography>
+                {genres.map(genre => {
+                    if (genre.id === genres.length) {
+                        return `${genre.name}`;
+                    } else {
+                        return `${genre.name} • `;
+                    }
+                })}
             </Typography>
             <br />
             <Grid container spacing={0} justifyContent='center'>

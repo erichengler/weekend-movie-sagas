@@ -59,6 +59,7 @@ function MovieDetails() {
                 }}>
                     <br />
                     <Grid container>
+
                         {/* Movie Poster Image */}
                         <Grid item xs={5}>
                             <CardMedia sx={{
@@ -70,16 +71,19 @@ function MovieDetails() {
                             >
                             </CardMedia>
                         </Grid>
+
                         {/* Title, genres and description */}
                         <Grid item xs={6}>
                             <CardContent sx={{ 
                                 textAlign: 'left', marginTop: '-10px',
                                 marginRight: '-65px',  }}
                             >
+
                                 {/* Title */}
                                 <Typography variant="h5">
                                     <u>{movies[id - 1].title}</u>
                                 </Typography>
+
                                 {/* Genres */}
                                 <Typography>
                                     {
@@ -91,6 +95,7 @@ function MovieDetails() {
                                     }
                                 </Typography>
                                 <br />
+
                                 {/* Description */}
                                 <Typography fontSize='medium'>
                                     {movies[id - 1].description}
@@ -100,6 +105,7 @@ function MovieDetails() {
                     </Grid>
                 </Card>
             </Grid>
+            
             {/* Buttons */}
             <Button onClick={toEditDetails}
                 sx={{ color: '#A62B1F', marginRight: '15px' }} 

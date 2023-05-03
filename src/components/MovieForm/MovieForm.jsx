@@ -72,24 +72,28 @@ function MovieForm() {
             </Typography>
             <br /><br />
             <form onSubmit={addMovie} autoComplete="off">
+
                 {/* Title Input */}
                 <CssTextField
                     placeholder="Movie Title"
                     required onChange={handleTitleChange}
                 />
                 <br /><br />
+
                 {/* Image URL Input */}
                 <CssTextField
                     placeholder="Poster Image URL"
                     required onChange={handlePosterChange}
                 />
                 <br /><br />
+
                 {/* Description Input */}
                 <CssTextField sx={{ width: "300px" }}
                     placeholder="Movie Description"
                     rows="7" multiline required
                     onChange={handleDescChange}
                 />
+
                 {/* Genre Select */}
                 <h4>Select Genre:</h4>
                 <CssTextField select onChange={handleGenreChange}
@@ -110,6 +114,7 @@ function MovieForm() {
                     <MenuItem value="13">Superhero</MenuItem>
                 </CssTextField>
                 <br /><br />
+                
                 {/* Buttons */}
                 <Button type="submit"
                     sx={{ color: '#A62B1F', marginRight: '15px' }}

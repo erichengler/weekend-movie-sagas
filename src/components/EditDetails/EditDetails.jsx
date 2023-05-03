@@ -68,11 +68,12 @@ function EditDetails() {
     // --------- END of handleChange ---------
 
     return (
-        <>
+        <form autoComplete='off'>
             <Typography variant='h4'>
                 Edit Details
             </Typography>
             <br /><br />
+
             {/* Edit Title */}
             <CssTextField
                 label="Title"
@@ -80,6 +81,7 @@ function EditDetails() {
                 required onChange={handleTitleChange}
             />
             <br /><br /><br />
+
             {/* Edit Description */}
             <CssTextField sx={{ width: '300px' }}
                 label="Description"
@@ -88,9 +90,10 @@ function EditDetails() {
                 onChange={handleDescChange}
             />
             <br /><br />
+
             {/* Select Genres */}
 
-            {/* TODO: Select genres */}
+
 
             {/* Buttons */}
             <Button
@@ -106,7 +109,7 @@ function EditDetails() {
             >
                 Cancel
             </Button>
-        </>
+        </form>
     );
 }
 

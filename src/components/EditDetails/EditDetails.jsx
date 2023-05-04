@@ -25,34 +25,34 @@ const CssTextField = styled(TextField)({
         },
     },
 });
-const customStyles= {
+const customStyles = {
     control: (provided, state) => ({
-       ...provided,
-       minHeight: 35,
-       backgroundColor: '#ddb9ac',
-       color: state.isFocused ? 'grey' : 'black',
-       border: state.isFocused ? "1px solid #A62B1F" : "1px solid #cccccc",
-       boxShadow: state.isFocused ? "0px 0px 3px #A62B1F" : "0px 0px 2px black",
-       "&:hover": {
-         border: "1px solid black",
-         boxShadow: "0px 0px 6px grey"
-       }
-     }),
-     dropdownIndicator: base => ({
+        ...provided,
+        minHeight: 35,
+        backgroundColor: '#ddb9ac',
+        color: state.isFocused ? 'grey' : 'black',
+        border: state.isFocused ? "1px solid #A62B1F" : "1px solid #cccccc",
+        boxShadow: state.isFocused ? "0px 0px 3px #A62B1F" : "0px 0px 2px black",
+        "&:hover": {
+            border: "1px solid black",
+            boxShadow: "0px 0px 6px grey"
+        }
+    }),
+    dropdownIndicator: base => ({
         ...base,
         color: '#A62B1F',
         "&:hover": {
             color: 'black'
         }
-     }),
-     clearIndicator: base => ({
+    }),
+    clearIndicator: base => ({
         ...base,
         color: '#A62B1F',
         "&:hover": {
             color: 'black'
         }
-     })
-   };
+    })
+};
 // ------- END of custom styling -------
 
 
@@ -81,8 +81,8 @@ function EditDetails() {
 
     // Saves changes and brings user back to details
     const saveDetails = () => {
-        dispatch({ type: 'EDIT_MOVIE', payload: { id, title, description, movieGenres } })
-        history.push(`/details/${id}`)
+            dispatch({ type: 'EDIT_MOVIE', payload: { id, title, description, movieGenres } })
+            history.push(`/details/${id}`)    
     }
 
     // Cancels changes and brings user back to details
@@ -106,65 +106,68 @@ function EditDetails() {
                 <h3>Loading...</h3>
             ) : (
 
-            <form autoComplete='off'>
-                
-                {/* Header */}
-                <Typography variant='h4'>
-                    Edit Details
-                </Typography>
-                <br /><br />
+                <form onSubmit={saveDetails} autoComplete='off'>
 
-                {/* Edit Title */}
-                <CssTextField
-                    label="Title"
-                    defaultValue={title}
-                    required onChange={handleTitleChange}
-                />
-                <br /><br /><br />
+                    {/* Header */}
+                    <Typography variant='h4'>
+                        Edit Details
+                    </Typography>
+                    <br /><br />
 
-                {/* Edit Description */}
-                <CssTextField sx={{ width: '500px' }}
-                    label="Description"
-                    defaultValue={description}
-                    rows="12" multiline required
-                    onChange={handleDescChange}
-                />
-                <br /><br /><br />
+                    {/* Edit Title */}
+                    <CssTextField
+                        label="Title"
+                        defaultValue={title}
+                        onChange={handleTitleChange}
+                        required 
+                    />
+                    <br /><br /><br />
 
-                {/* Select Genres */}
-                <div style={{ width: '350px', margin: 'auto' }}>
-                <Select              
-                    required
-                    isMulti
-                    placeholder="Select Genres"
-                    defaultValue={movieGenres}
-                    options={genres}
-                    getOptionLabel={(genre) => genre.name}
-                    onChange={(selected) => setMovieGenres(selected)}
-                    menuPlacement="auto"
-                    styles={customStyles}
-                    components={{
-                        IndicatorSeparator: () => null
-                      }}
-                />
-                </div>
-                <br /><br />
+                    {/* Edit Description */}
+                    <CssTextField sx={{ width: '500px' }}
+                        label="Description"
+                        defaultValue={description}
+                        onChange={handleDescChange}
+                        rows="12" 
+                        multiline 
+                        required
+                    />
+                    <br /><br /><br />
 
-                {/* Buttons */}
-                <Button
-                    onClick={saveDetails}
-                    sx={{ color: '#A62B1F', marginRight: '15px' }}
-                >
-                    Save
-                </Button>
-                |
-                <Button
-                    onClick={backToDetails}
-                    sx={{ color: '#A62B1F', marginLeft: '15px' }}
-                >
-                    Cancel
-                </Button>
-            </form>
+                    {/* Select Genres */}
+                    <div style={{ width: '350px', margin: 'auto' }}>
+                        <Select
+                            required
+                            isMulti
+                            placeholder="Select Genres"
+                            defaultValue={movieGenres}
+                            options={genres}
+                            getOptionLabel={(genre) => genre.name}
+                            onChange={(selected) => setMovieGenres(selected)}
+                            menuPlacement="auto"
+                            styles={customStyles}
+                            components={{
+                                IndicatorSeparator: () => null
+                            }}
+                        />
+                    </div>
+                    <br /><br />
+
+                    {/* Buttons */}
+                    <Button
+                        type="submit"
+                        sx={{ color: '#A62B1F', marginRight: '15px' }}
+                    >
+                        Save
+                    </Button>
+                    |
+                    <Button
+                        onClick={backToDetails}
+                        sx={{ color: '#A62B1F', marginLeft: '15px' }}
+                    >
+                        Cancel
+                    </Button>
+                </form>
             )}
         </div>
     );

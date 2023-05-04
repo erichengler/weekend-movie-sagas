@@ -139,12 +139,15 @@ function EditDetails() {
                         <Select
                             required
                             isMulti
+                            closeMenuOnSelect={false}
                             placeholder="Select Genres"
                             defaultValue={movieGenres}
                             options={genres}
                             getOptionLabel={(genre) => genre.name}
+                            getOptionValue={(genre) => genre.name}
+                            hideSelectedOptions={true}
                             onChange={(selected) => setMovieGenres(selected)}
-                            menuPlacement="auto"
+                            menuPlacement="top"
                             styles={customStyles}
                             components={{
                                 IndicatorSeparator: () => null

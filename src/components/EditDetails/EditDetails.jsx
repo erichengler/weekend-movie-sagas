@@ -40,12 +40,18 @@ const customStyles= {
      }),
      dropdownIndicator: base => ({
         ...base,
-        color: '#A62B1F'
+        color: '#A62B1F',
+        "&:hover": {
+            color: 'black'
+        }
      }),
      clearIndicator: base => ({
         ...base,
-        color: '#A62B1F'
-     }),
+        color: '#A62B1F',
+        "&:hover": {
+            color: 'black'
+        }
+     })
    };
 // ------- END of custom styling -------
 
@@ -137,6 +143,9 @@ function EditDetails() {
                     onChange={(selected) => setMovieGenres(selected)}
                     menuPlacement="auto"
                     styles={customStyles}
+                    components={{
+                        IndicatorSeparator: () => null
+                      }}
                 />
                 </div>
                 <br /><br />

@@ -38,7 +38,7 @@ function MovieDetails() {
     return (
         <div>
             {/* Checking if reducer has a value before loading */}
-            {movie.length === 0 ? (
+            {movie.length === 0 || movie.genres.length === 0 ? (
                 <h3>Loading...</h3>
             ) : (
                 <div>
@@ -79,9 +79,8 @@ function MovieDetails() {
                                 <Grid item xs={6}>
                                     <CardContent sx={{
                                         textAlign: 'left', marginTop: '-10px',
-                                        marginRight: '-65px',
-                                    }}
-                                    >
+                                        marginRight: '-65px', 
+                                    }}>
 
                                         {/* Title */}
                                         <Typography variant="h5">
@@ -92,7 +91,7 @@ function MovieDetails() {
                                         <Typography>
                                             {
                                                 movie.genres.map(genre => {
-                                                    return <span key={genre.value}>
+                                                    return <span key={genre.id}>
                                                         <i>•&nbsp;{genre.name}&nbsp;</i>
                                                     </span>
                                                 })

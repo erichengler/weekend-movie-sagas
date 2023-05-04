@@ -29,7 +29,7 @@ function* fetchThisMovie(action) {
         console.log(`Get this movie with ID: ${action.payload}`);
         const movie = yield axios.get(`/api/movie/details?id=${action.payload}`);
         const movieGenres = movie.data.map(genre => {
-            return { name: genre.name, value: genre.genre_id }
+            return { name: genre.name, id: genre.genre_id }
         })
         yield put({ type: 'SET_MOVIE', payload: { movie: movie.data[0], genres: movieGenres } })
     } catch {

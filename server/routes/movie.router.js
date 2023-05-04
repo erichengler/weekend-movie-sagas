@@ -99,7 +99,7 @@ router.put('/edit', (req, res) => {
 	let updateGenresQuery = `INSERT INTO "movies_genres"
 		("movie_id", "genre_id") VALUES ($1, $2);`
 	updatedMovie.movieGenres.forEach((genre) => {
-		pool.query(updateGenresQuery, [updatedMovie.id, genre.value])
+		pool.query(updateGenresQuery, [updatedMovie.id, genre.id])
 			.then(() => { })
 			.catch((error) => {
 				console.log('Error in PUT (update genres)');

@@ -25,7 +25,7 @@ const CssTextField = styled(TextField)({
         },
     },
 });
-const customStyles = {
+const customSelect = {
     control: (provided, state) => ({
         ...provided,
         minHeight: 35,
@@ -51,7 +51,11 @@ const customStyles = {
         "&:hover": {
             color: 'black'
         }
-    })
+    }),
+    placeholder: base => ({
+        ...base,
+        color: 'black',
+    }),
 };
 // ------- END of custom styling -------
 
@@ -61,7 +65,6 @@ function EditDetails() {
     useEffect(() => {
         dispatch({ type: 'FETCH_THIS_MOVIE', payload: id });
         dispatch({ type: 'FETCH_GENRES' });
-        console.log(movieGenres);
     }, []);
 
     // Takes the id from the url
@@ -80,9 +83,10 @@ function EditDetails() {
     const [movieGenres, setMovieGenres] = useState(movie.genres);
 
     // Saves changes and brings user back to details
-    const saveDetails = () => {
-        if (movieGenres.length === 0) {
-            return
+    const saveDetails = (event) => {
+        if (movieGenres.length > 4) {
+            event.preventDefault();
+            alert('Sorry, there is a maximum of 4 genres per movie.');
         } else {
             dispatch({ type: 'EDIT_MOVIE', payload: { id, title, description, movieGenres } })
             history.push(`/details/${id}`);
@@ -152,13 +156,13 @@ function EditDetails() {
                             hideSelectedOptions={true}
                             onChange={(selected) => setMovieGenres(selected)}
                             menuPlacement="top"
-                            styles={customStyles}
+                            styles={customSelect}
                             components={{
-                                IndicatorSeparator: () => null
+                                IndicatorSeparator: () => null,
                             }}
                         />
                     </div>
-                    <br /><br />
+                    <br />
 
                     {/* Buttons */}
                     <Button

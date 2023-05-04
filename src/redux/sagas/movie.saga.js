@@ -41,20 +41,17 @@ function* postMovie(action) {
     try {
         yield axios.post('/api/movie', action.payload);
         yield put({ type: 'FETCH_MOVIES' });
-        action.setMovie({});
     } catch (error) {
         console.log(`Error in postMovie`, error);
-        alert('Something went wrong!');
     }
 }
 
 function* editMovie(action) {
     try {
-        yield axios.put(`/api/movie`, action.payload);
+        yield axios.put(`/api/movie/edit?id=${action.payload.id}`, action.payload);
         yield put({ type: 'FETCH_MOVIES' });
     } catch (error) {
         console.log(`Error in editMovie ${error}`);
-        alert('Something went wrong!');
     }
 }
 

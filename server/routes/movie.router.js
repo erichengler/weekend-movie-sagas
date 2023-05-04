@@ -52,6 +52,7 @@ router.post('/', (req, res) => {
       			VALUES  ($1, $2);
       			`
 			// SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
+
 			pool.query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id]).then(result => {
 				//Now that both are done, send back success!
 				res.sendStatus(201);
@@ -69,15 +70,15 @@ router.post('/', (req, res) => {
 })
 
 // PUT
-router.put('/', (req, res) => {
+router.put('/edit', (req, res) => {
 	console.log('In PUT request');
 	let updatedMovie = req.body;
 
-	let queryText = `UPDATE "movies" 
+	let updateQuery = `UPDATE "movies" 
         SET "title" = $1, "description" = $2
         WHERE "id" = $3;`;
 
-	pool.query(queryText,
+	pool.query(updateQuery,
 		[updatedMovie.title, updatedMovie.description, updatedMovie.id])
 		.then(() => { res.sendStatus(200); })
 		.catch((error) => {

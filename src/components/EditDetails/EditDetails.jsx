@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import Select from 'react-select'
 // ------- MUI Imports -------
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-// ------- START of TextField CSS -------
+// ------- START of custom styling -------
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
         color: '#A62B1F',
@@ -24,13 +25,37 @@ const CssTextField = styled(TextField)({
         },
     },
 });
-// ------- END of TextField CSS -------
+const customStyles= {
+    control: (provided, state) => ({
+       ...provided,
+       minHeight: 35,
+       backgroundColor: '#ddb9ac',
+       color: state.isFocused ? 'grey' : 'black',
+       border: state.isFocused ? "1px solid #A62B1F" : "1px solid #cccccc",
+       boxShadow: state.isFocused ? "0px 0px 3px #A62B1F" : "0px 0px 2px black",
+       "&:hover": {
+         border: "1px solid black",
+         boxShadow: "0px 0px 6px grey"
+       }
+     }),
+     dropdownIndicator: base => ({
+        ...base,
+        color: '#A62B1F'
+     }),
+     clearIndicator: base => ({
+        ...base,
+        color: '#A62B1F'
+     }),
+   };
+// ------- END of custom styling -------
+
 
 function EditDetails() {
     // Get this movie and all genres on load
     useEffect(() => {
         dispatch({ type: 'FETCH_THIS_MOVIE', payload: id });
         dispatch({ type: 'FETCH_GENRES' });
+        console.log(movieGenres);
     }, []);
 
     // Takes the id from the url
@@ -70,7 +95,7 @@ function EditDetails() {
 
     return (
         <div>
-            {/* Checking if reducers have a value before loading */}
+            {/* Checking if reducers have values before loading */}
             {movie.length === 0 || genres.length === 0 ? (
                 <h3>Loading...</h3>
             ) : (
@@ -98,11 +123,23 @@ function EditDetails() {
                     rows="12" multiline required
                     onChange={handleDescChange}
                 />
-                <br /><br />
+                <br /><br /><br />
 
                 {/* Select Genres */}
-
-
+                <div style={{ width: '350px', margin: 'auto' }}>
+                <Select              
+                    required
+                    isMulti
+                    placeholder="Select Genres"
+                    defaultValue={movieGenres}
+                    options={genres}
+                    getOptionLabel={(genre) => genre.name}
+                    onChange={(selected) => setMovieGenres(selected)}
+                    menuPlacement="auto"
+                    styles={customStyles}
+                />
+                </div>
+                <br /><br />
 
                 {/* Buttons */}
                 <Button

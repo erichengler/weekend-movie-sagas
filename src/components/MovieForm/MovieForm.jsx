@@ -91,16 +91,17 @@ function MovieForm() {
                 <br /><br />
 
                 {/* Description Input */}
-                <CssTextField sx={{ width: "300px" }}
+                <CssTextField sx={{ width: "500px" }}
                     placeholder="Movie Description"
-                    rows="7" multiline required
+                    rows="12" multiline required
                     onChange={handleDescChange}
                 />
+                <br /><br />
 
                 {/* Genre Select */}
-                <h4>Select Genre:</h4>
                 <CssTextField select onChange={handleGenreChange}
                     defaultValue="1"
+                    label="Genre"
                 >
                     <MenuItem value="1">Adventure</MenuItem>
                     <MenuItem value="2">Animated</MenuItem>

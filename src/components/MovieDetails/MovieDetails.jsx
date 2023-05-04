@@ -7,7 +7,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 
 function MovieDetails() {
@@ -42,7 +41,7 @@ function MovieDetails() {
             {movie.length === 0 ? (
                 <h3>Loading...</h3>
             ) : (
-                <Container>
+                <div>
 
                     {/* Header */}
                     <Typography variant="h4">
@@ -50,8 +49,9 @@ function MovieDetails() {
                     </Typography>
                     <br />
 
-                    {/* This grid seems redundant */}
                     <Grid container justifyContent='center'>
+                        
+                        {/* Card containing details */}
                         <Card variant="outlined" sx={{
                             width: '900px', height: '593px', boxShadow: 4,
                             backgroundColor: 'rgba(166,43,31,0.2)',
@@ -122,7 +122,7 @@ function MovieDetails() {
                     >
                         Back to List
                     </Button>
-                </Container>
+                </div>
             )}
         </div>
     )

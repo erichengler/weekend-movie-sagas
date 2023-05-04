@@ -74,7 +74,7 @@ function EditDetails() {
             {movie.length === 0 || genres.length === 0 ? (
                 <h3>Loading...</h3>
             ) : (
-                
+
             <form autoComplete='off'>
                 
                 {/* Header */}
@@ -92,10 +92,10 @@ function EditDetails() {
                 <br /><br /><br />
 
                 {/* Edit Description */}
-                <CssTextField sx={{ width: '300px' }}
+                <CssTextField sx={{ width: '500px' }}
                     label="Description"
                     defaultValue={description}
-                    rows="7" multiline required
+                    rows="12" multiline required
                     onChange={handleDescChange}
                 />
                 <br /><br />

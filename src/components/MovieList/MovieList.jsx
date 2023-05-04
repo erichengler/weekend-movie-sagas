@@ -21,44 +21,49 @@ function MovieList() {
     const dispatch = useDispatch();
 
     return (
-        <Container maxWidth='xl'>
+        <div>
+            {movies.length === 0 || genres.length === 0 ? (
+                <h3>Loading...</h3>
+            ) : (
+                <Container maxWidth='xl'>
 
-            {/* Header */}
-            <Typography variant="h4">
-                Movie List
-            </Typography>
+                    {/* Header */}
+                    <Typography variant="h4">
+                        Movie List
+                    </Typography>
 
-            {/* Instructions */}
-            <Typography>
-                <i>Click on a poster to view movie details</i>
-            </Typography>
-            <br />
+                    {/* Instructions */}
+                    <Typography>
+                        <i>Click on a poster to view movie details</i>
+                    </Typography>
+                    <br />
 
-            {/* Display all genres */}
-            <Typography>
+                    {/* Display all genres */}
+                    <Typography>
 
-                {/* Maps through all genres */}
-                {genres.map(genre => {
-                    if (genre.id === genres.length) {
-                        return `${genre.name}`;
-                    } else {
-                        return `${genre.name} • `;
-                    }
-                })}
-            </Typography>
-            <br />
+                        {/* Maps through all genres */}
+                        {genres.map(genre => {
+                            if (genre.id === genres.length) {
+                                return `${genre.name}`;
+                            } else {
+                                return `${genre.name} • `;
+                            }
+                        })}
+                    </Typography>
+                    <br />
 
-            {/* Grid containing movie cards */}
-            <Grid container spacing={0} justifyContent='center'>
+                    {/* Grid containing movie cards */}
+                    <Grid container spacing={0} justifyContent='center'>
 
-                {/* Maps through all movies */}
-                {movies.map((movie) => (
-                    <MovieItem key={movie.id} movie={movie} />            
-                ))}
-            </Grid>
-            <br />
-        </Container>
-
+                        {/* Maps through all movies */}
+                        {movies.map((movie) => (
+                            <MovieItem key={movie.id} movie={movie} />
+                        ))}
+                    </Grid>
+                    <br />
+                </Container>
+            )}
+        </div>
     );
 }
 

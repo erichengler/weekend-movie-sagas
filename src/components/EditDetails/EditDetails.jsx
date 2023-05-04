@@ -81,13 +81,17 @@ function EditDetails() {
 
     // Saves changes and brings user back to details
     const saveDetails = () => {
+        if (movieGenres.length === 0) {
+            return
+        } else {
             dispatch({ type: 'EDIT_MOVIE', payload: { id, title, description, movieGenres } })
-            history.push(`/details/${id}`)    
+            history.push(`/details/${id}`);
+        }
     }
 
     // Cancels changes and brings user back to details
     const backToDetails = () => {
-        history.push(`/details/${id}`)
+        history.push(`/details/${id}`);
     }
 
     // --------- START of handleChange ---------
@@ -119,7 +123,7 @@ function EditDetails() {
                         label="Title"
                         defaultValue={title}
                         onChange={handleTitleChange}
-                        required 
+                        required
                     />
                     <br /><br /><br />
 
@@ -128,8 +132,8 @@ function EditDetails() {
                         label="Description"
                         defaultValue={description}
                         onChange={handleDescChange}
-                        rows="12" 
-                        multiline 
+                        rows="12"
+                        multiline
                         required
                     />
                     <br /><br /><br />

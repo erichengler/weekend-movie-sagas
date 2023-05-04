@@ -60,31 +60,53 @@ router.post('/', (req, res) => {
 				// catch for second query
 				console.log(err);
 				res.sendStatus(500)
-			})
+			});
 
 			// Catch for first query
 		}).catch(err => {
 			console.log(err);
 			res.sendStatus(500)
-		})
-})
+		});
+});
 
 // PUT
 router.put('/edit', (req, res) => {
-	console.log('In PUT request');
+	console.log('In PUT request', req.body);
 	let updatedMovie = req.body;
 
+	// Query to update movie title and description
 	let updateQuery = `UPDATE "movies" 
         SET "title" = $1, "description" = $2
         WHERE "id" = $3;`;
-
 	pool.query(updateQuery,
 		[updatedMovie.title, updatedMovie.description, updatedMovie.id])
-		.then(() => { res.sendStatus(200); })
+		.then(() => { })
 		.catch((error) => {
-			console.log('Error in PUT', error);
+			console.log('Error in PUT (update movie)', error);
 			res.sendStatus(500);
-		})
-})
+		});
+
+	// Query to delete movie genres before updating
+	let deleteQuery = `DELETE FROM "movies_genres" WHERE movie_id = $1;`
+	pool.query(deleteQuery, [updatedMovie.id])
+		.then(() => { })
+		.catch((error) => {
+			console.log('Error in PUT (delete genres)');
+			res.sendStatus(500);
+		});
+
+	// Query to add/update genres of movie
+	let updateGenresQuery = `INSERT INTO "movies_genres"
+		("movie_id", "genre_id") VALUES ($1, $2);`
+	updatedMovie.movieGenres.forEach((genre) => {
+		pool.query(updateGenresQuery, [updatedMovie.id, genre.value])
+			.then(() => { })
+			.catch((error) => {
+				console.log('Error in PUT (update genres)');
+				res.sendStatus(500);
+			});
+	}); 
+	res.sendStatus(200);
+});
 
 module.exports = router;

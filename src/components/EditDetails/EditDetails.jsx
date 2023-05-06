@@ -143,7 +143,7 @@ function EditDetails() {
                     <br /><br /><br />
 
                     {/* Select Genres */}
-                    <div style={{ width: '350px', margin: 'auto' }}>
+                    <div style={{ width: '375px', margin: 'auto' }}>
                         <Select
                             required
                             isMulti

@@ -35,6 +35,14 @@ function MovieDetails() {
         history.push(`/edit/${id}`)
     }
 
+    // Deletes a movie from the database
+    const deleteMovie = () => {
+        if (window.confirm("Are you sure you want to delete this movie?")) {
+            dispatch({ type: 'REMOVE_MOVIE', payload: id });
+            history.push('/')
+        }
+    }
+
     return (
         <div>
             {/* Checking if reducer has a value before loading */}
@@ -50,7 +58,7 @@ function MovieDetails() {
                     <br />
 
                     <Grid container justifyContent='center'>
-                        
+
                         {/* Card containing details */}
                         <Card variant="outlined" sx={{
                             width: '900px', height: '593px', boxShadow: 4,
@@ -79,7 +87,7 @@ function MovieDetails() {
                                 <Grid item xs={6}>
                                     <CardContent sx={{
                                         textAlign: 'left', marginTop: '-10px',
-                                        marginRight: '-65px', 
+                                        marginRight: '-65px',
                                     }}>
 
                                         {/* Title */}
@@ -102,7 +110,7 @@ function MovieDetails() {
                                         {/* Description */}
                                         <Typography fontSize='medium'>
                                             {movie.movie.description}
-                                        </Typography>                                      
+                                        </Typography>
                                     </CardContent>
                                 </Grid>
                             </Grid>
@@ -114,6 +122,12 @@ function MovieDetails() {
                         sx={{ color: '#A62B1F', marginRight: '15px' }}
                     >
                         Edit Details
+                    </Button>
+                    |
+                    <Button onClick={deleteMovie}
+                        sx={{ color: '#A62B1F', marginRight: '15px', marginLeft: '15px' }}
+                    >
+                        Delete Movie
                     </Button>
                     |
                     <Button onClick={backToList}

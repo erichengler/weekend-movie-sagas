@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
 
 // PUT
 router.put('/edit', (req, res) => {
-	console.log('In PUT request', req.body);
+	console.log('In PUT request');
 	let updatedMovie = req.body;
 
 	// Query to update movie title and description
@@ -91,7 +91,7 @@ router.put('/edit', (req, res) => {
 	pool.query(deleteQuery, [updatedMovie.id])
 		.then(() => { })
 		.catch((error) => {
-			console.log('Error in PUT (delete genres)');
+			console.log('Error in PUT (delete genres)', error);
 			res.sendStatus(500);
 		});
 
@@ -102,11 +102,40 @@ router.put('/edit', (req, res) => {
 		pool.query(updateGenresQuery, [updatedMovie.id, genre.id])
 			.then(() => { })
 			.catch((error) => {
-				console.log('Error in PUT (update genres)');
+				console.log('Error in PUT (update genres)', error);
 				res.sendStatus(500);
 			});
-	}); 
+	});
 	res.sendStatus(200);
 });
+
+// DELETE
+router.delete('/:id', (req, res) => {
+	console.log('In DELETE request');
+	let deletedMovie = req.params.id;
+
+	// Query to remove genres of a specific movie based on movie_id
+	let deleteGenresQuery = `DELETE FROM "movies_genres" WHERE "movie_id" = $1;`
+	pool.query(deleteGenresQuery, [deletedMovie])
+		.then(() => {
+			// Query to delete a specific movie based on id
+			let deleteMovieQuery = `DELETE FROM "movies" WHERE "id" = $1;`
+			pool.query(deleteMovieQuery, [deletedMovie])
+			.then(() => {
+				res.sendStatus(200);
+			})
+			.catch((error) => {
+				console.log('Error in DELETE', error)
+				res.sendStatus(500);
+			})
+		})
+		.catch((error) => {
+			console.log('Error in DELETE', error);
+			res.sendStatus(500);
+		})
+
+
+
+})
 
 module.exports = router;

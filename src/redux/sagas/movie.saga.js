@@ -55,6 +55,15 @@ function* editMovie(action) {
     }
 }
 
+function* deleteMovie(action) {
+    try {
+        yield axios.delete(`/api/movie/${action.payload}`)
+        yield put({ type: 'FETCH_MOVIES' });
+    } catch (error) {
+        console.log(`Error in deleteMovie ${error}`);
+    }
+}
+
 // Create the rootSaga generator function
 function* movieSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
@@ -62,6 +71,7 @@ function* movieSaga() {
     yield takeEvery('ADD_MOVIE', postMovie);
     yield takeEvery('EDIT_MOVIE', editMovie)
     yield takeEvery('FETCH_THIS_MOVIE', fetchThisMovie);
+    yield takeEvery('REMOVE_MOVIE', deleteMovie);
 }
 
 export default movieSaga;

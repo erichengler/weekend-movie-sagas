@@ -29,7 +29,7 @@ This project contains a list of movies! The movies that are displayed on the mov
 
 Starting at the home page (movie list), the user can click a movie poster image to be brought to a `details` page containing details for the movie that was clicked on. 
 
-From the details page, the user can click the `Back to List` button to be brought back to the movie list home page or the `Edit Details` button, which will bring them to the `edit` page for that movie.
+From the details page, the user can click the `Back to List` button to be brought back to the movie list home page or the `Edit Details` button, which will bring them to the `edit` page for that movie. The user can also click the `Delete Movie` button to remove the movie from the database (after confirmation) and be returned to the movie list page.
 
 On the `edit` page, the user can modify the title, description and/or genres of a specific movie using a form and save the changes to the database by clicking the `Save` button. Clicking on the `Cancel` button will cancel any changes made. Both of these buttons will lead the user back to the `details` page.
 
@@ -49,7 +49,7 @@ Users can click on the `Add Movie` button (located in the header) at any time to
 
 ## Future Plans
 
-I plan to return to this project in the future to add a function that allows users to delete a movie from the database. I would also like to add the ability for users to search through the movie list, add a like to a movie, and display the top 10 liked movies on a separate page.
+I plan to return to this project in the future and add the ability for users to search/filter through the movie list, add a like to a movie, and display the top 10 liked movies on a separate page. I would also like to update the add movie page with the ability to pick multiple genres for a movie (like the edit details page).
 
 ## Acknowledgement
 

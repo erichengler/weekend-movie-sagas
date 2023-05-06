@@ -55,7 +55,7 @@ I plan to return to this project in the future and add the ability for users to 
 
 Thanks to Chris Black and Prime Digital Academy for pushing me to go above and beyond my own expectations for this project!
 
-And a special thanks to Marc McCarthy for his help with maintaining my details page on refresh, setting up React-select and providing a ton of inspiration.
+And a special thanks to Marc McCarthy for his help with maintaining my details page on refresh, setting up React-select and providing a ton of inspiration. You're awesome Marc!
 
 ## Support
 

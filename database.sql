@@ -4,7 +4,7 @@
 CREATE TABLE "movies" (
   "id" SERIAL PRIMARY KEY,
   "title" VARCHAR(120) NOT NULL,
-  "poster"  VARCHAR(120) NOT NULL,
+  "poster"  VARCHAR(250) NOT NULL,
   "description" TEXT NOT NULL
 );
 

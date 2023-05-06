@@ -120,5 +120,6 @@ The edit page should have the buttons:
 - [x] Allow the user to add a genre to a movie.
 - [x] Allow the user to remove a genre from a movie.
 
+- [ ] Allow the user to delete a movie
 - [ ] Only display the top 10 movies, and allow the user to search for movie titles with a search bar on the home page (you can do this on the client side or the server side, server side is a bigger stretch, but good practice).
 

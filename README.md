@@ -8,13 +8,13 @@ This project contains a list of movies! The movies that are displayed on the mov
 
 ## Preview
 
-![Preview 1](./public/images/previews/preview1.png)
-<br />
-![Preview 2](./public/images/previews/preview2.png)
-<br />
-![Preview 3](./public/images/previews/preview3.png)
-<br />
-![Preview 4](./public/images/previews/preview4.png)
+![Preview 1](./public/images/previews/preview0.png)
+<br /><br />
+![Preview 2](./public/images/previews/preview1.png)
+<br /><br />
+![Preview 3](./public/images/previews/preview2.png)
+<br /><br />
+![Preview 4](./public/images/previews/preview3.png)
 
 ## Installation / Setup
 
